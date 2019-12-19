@@ -1,0 +1,35 @@
+A general document of counting the number of right arrow in the puzzle game:--------
+
+
+1. This application is made in Python 3.6 .
+
+2. The technique used is Template matching using OpenCV2.
+
+3. Use the OpenCV function matchTemplate to search for matches between an image patch and an input image.
+
+4. The API is made in Flask and return JSON response.
+
+5. It will request for 2 files to upload:-
+
+   	5.1    org = The original image in which you want to recognize the arrow. (puzzle1.png)
+   	5.2    det = The detection image that is to be found in the original image. (arrow4.png)
+
+6. Then it will convert both images to black & white to reduce noise and colours.
+
+7. Then we apply Threshold, the idea here is to find identical regions of an image that match a template we provide, giving a threshold:-
+
+    	7.1 The threshold depends on the accuracy with which we want to detect the template in the source image.
+    	7.2 For instance, if we are applying face recognition and we want to detect the eyes of a person, we can provide a random image of an eye as the template and search the source (the face of a person).
+    	7.3 In this case, since “eyes” show a large amount of variations from person to person, even if we set the threshold as 50%(0.5), the eye will be detected.
+    	7.4 In cases where almost identical templates are to be searched, the threshold should be set high.(t>=0.8)
+
+8. Then we will make rectangle of the object we found in an original image.
+
+9. We will count the number of time the loop will execute, to calculate number of right arrow.
+
+10. At last, it will return the "count" in JSON.
+
+11. In addition, it also save the response in count.json (incase you want to use it). 
+
+12. Screenshot is added of postman response. and resulting image with rectangular boxes.
+
